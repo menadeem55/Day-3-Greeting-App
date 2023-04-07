@@ -1,28 +1,21 @@
 package com.bridgelabz.greetingapp.controller;
 
+import com.bridgelabz.greetingapp.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/start")
-public class GreetingController {
-    @GetMapping("/get")
-    public String get(@RequestBody String name) {
-        return "Hello" + name;
+public class GreetingController{
+    @Autowired
+    //AutoWired to get the dependency of the other service layer
+    GreetingService greetService;
+    @GetMapping("/hello")
+    public String get(@RequestBody String name){
+        return greetService.getHello(name);
     }
-
-    @PostMapping("/post")
-    public String post(@RequestParam(value = "firstName") String firstName,
-                       @RequestParam(value = "lastName") String lastName) {
-        return "Welcome " + firstName + " " + lastName + " !!!!!";
-    }
-
-    @PutMapping("/put")
-    public String put(@RequestParam(value = "msg") String msg) {
-        return msg;
-    }
-
-    @DeleteMapping("/delete/{etc}")
-    public String delete(@PathVariable String etc) {
-        return "hello " + etc;
+    @GetMapping("/simplegreet")
+    public String simplegreet(){
+        return greetService.getSimpleGreet();
     }
 }
