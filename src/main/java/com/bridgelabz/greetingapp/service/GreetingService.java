@@ -1,17 +1,24 @@
 package com.bridgelabz.greetingapp.service;
 
 import com.bridgelabz.greetingapp.model.UserModel;
+import com.bridgelabz.greetingapp.repository.IrepoGreet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GreetingService {
-    public String getHello(String name) {
-        return "Hello " + name;
-    }
+    @Autowired
+    IrepoGreet irepoGreet;
+
     public String getSimpleGreet() {
         return "Hello World!!";
     }
-    public String getUserGreet(UserModel userModel){
-        return "Hello "+userModel.getFirstName()+" "+userModel.getLastName();
+
+    public String user(String firstName, String lastName) {
+        return firstName + " " + lastName;
+    }
+
+    public UserModel saveUser(UserModel userModel) {
+        return irepoGreet.save(userModel);
     }
 }

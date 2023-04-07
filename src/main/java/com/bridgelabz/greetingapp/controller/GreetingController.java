@@ -7,20 +7,24 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/start")
-public class GreetingController{
+public class GreetingController {
     @Autowired
-    //AutoWired to get the dependency of the other service layer
     GreetingService greetService;
-    @GetMapping("/hello")
-    public String get(@RequestBody String name){
-        return greetService.getHello(name);
-    }
+
     @GetMapping("/simplegreet")
-    public String simplegreet(){
+    public String simplegreet() {
         return greetService.getSimpleGreet();
     }
-    @PostMapping("/usergreeting")
-    public String userGreeting(@RequestBody UserModel userModel){
-        return greetService.getUserGreet(userModel);
+
+    //displaying data in Request body
+    @PostMapping
+    public String getUsers(@RequestBody String firstName, String lastName) {
+        return greetService.user(firstName, lastName);
+    }
+
+    //adding new user to database
+    @PostMapping("/savedUser")
+    public UserModel savedUser(@RequestBody UserModel userModel) {
+        return greetService.saveUser(userModel);
     }
 }

@@ -1,6 +1,14 @@
 package com.bridgelabz.greetingapp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class UserModel {
+   @jakarta.persistence.Id
+    @GeneratedValue
+    int Id;
     String firstName;
     String lastName;
 
@@ -18,5 +26,13 @@ public class UserModel {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }
