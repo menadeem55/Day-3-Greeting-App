@@ -27,4 +27,9 @@ public class GreetingController {
     public UserModel savedUser(@RequestBody UserModel userModel) {
         return greetService.saveUser(userModel);
     }
+    @GetMapping("/getting/{id}")
+    public UserModel gets(@PathVariable int id)
+    {
+        return greetService.getById(id);
+    }
 }
