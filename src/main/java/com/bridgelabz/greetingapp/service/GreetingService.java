@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -33,5 +34,14 @@ public class GreetingService {
     public List<UserModel> getAll() {
         List<UserModel> userModel = irepoGreet.findAll();
         return userModel;
+    }
+
+    public UserModel updateUser(UserModel userModel, int id) {
+        Optional<UserModel> userModel1;
+        userModel1 = irepoGreet.findById(id);
+        userModel1.get().setFirstName(userModel.getFirstName());
+        userModel1.get().setLastName(userModel.getLastName());
+        irepoGreet.save(userModel1.get());
+        return userModel1.get();
     }
 }

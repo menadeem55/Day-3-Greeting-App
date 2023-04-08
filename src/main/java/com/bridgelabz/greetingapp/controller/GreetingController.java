@@ -29,13 +29,19 @@ public class GreetingController {
     public UserModel savedUser(@RequestBody UserModel userModel) {
         return greetService.saveUser(userModel);
     }
+
     @GetMapping("/getting/{id}")
-    public UserModel gets(@PathVariable int id)
-    {
+    public UserModel gets(@PathVariable int id) {
         return greetService.getById(id);
     }
+
     @GetMapping("/getall")
-    public List<UserModel> fetchingData(){
+    public List<UserModel> fetchingData() {
         return greetService.getAll();
+    }
+
+    @PutMapping("/update/{id}")
+    public UserModel update(@PathVariable int id, @RequestBody UserModel userModel) {
+        return greetService.updateUser(userModel, id);
     }
 }
