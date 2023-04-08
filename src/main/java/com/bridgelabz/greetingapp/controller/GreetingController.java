@@ -44,4 +44,9 @@ public class GreetingController {
     public UserModel update(@PathVariable int id, @RequestBody UserModel userModel) {
         return greetService.updateUser(userModel, id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable int id) {
+        greetService.deleteId(id);
+    }
 }
