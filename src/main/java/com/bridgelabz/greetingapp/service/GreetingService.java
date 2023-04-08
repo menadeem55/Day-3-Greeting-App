@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Service
 public class GreetingService {
     @Autowired
@@ -22,8 +24,14 @@ public class GreetingService {
     public UserModel saveUser(UserModel userModel) {
         return irepoGreet.save(userModel);
     }
-    public UserModel getById(int id){
-        UserModel userModel =irepoGreet.findById(id).get();
+
+    public UserModel getById(int id) {
+        UserModel userModel = irepoGreet.findById(id).get();
+        return userModel;
+    }
+
+    public List<UserModel> getAll() {
+        List<UserModel> userModel = irepoGreet.findAll();
         return userModel;
     }
 }
